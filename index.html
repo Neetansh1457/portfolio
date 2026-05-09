@@ -1,0 +1,1282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Neetansh Shah — Backend Engineer · Fintech & Fraud Systems</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&family=Syne:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      :root {
+        --bg: #080c10;
+        --bg-card: #0d1117;
+        --bg-card2: #111820;
+        --border: rgba(255, 255, 255, 0.07);
+        --border-hover: rgba(255, 255, 255, 0.14);
+        --accent: #3b82f6;
+        --accent2: #6366f1;
+        --accent-dim: rgba(59, 130, 246, 0.12);
+        --text: #e8eaf0;
+        --text-muted: #6b7280;
+        --text-dim: #9ca3af;
+        --mono: "JetBrains Mono", monospace;
+        --sans: "Syne", sans-serif;
+        --green: #10b981;
+        --amber: #f59e0b;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--text);
+        font-family: var(--sans);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        padding: 1rem 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(8, 12, 16, 0.85);
+        backdrop-filter: blur(12px);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-logo {
+        font-family: var(--mono);
+        font-size: 13px;
+        color: var(--accent);
+        letter-spacing: 0.05em;
+        text-decoration: none;
+      }
+      .nav-links {
+        display: flex;
+        gap: 2rem;
+        list-style: none;
+      }
+      .nav-links a {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-muted);
+        text-decoration: none;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--text);
+      }
+      .nav-cta {
+        font-family: var(--mono);
+        font-size: 12px;
+        padding: 0.4rem 1rem;
+        border: 1px solid var(--accent);
+        color: var(--accent);
+        text-decoration: none;
+        border-radius: 4px;
+        transition: background 0.2s;
+        letter-spacing: 0.05em;
+      }
+      .nav-cta:hover {
+        background: var(--accent-dim);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        padding: 8rem 2rem 4rem;
+        max-width: 1100px;
+        margin: 0 auto;
+        position: relative;
+      }
+      .hero-inner {
+        max-width: 720px;
+      }
+
+      .hero-eyebrow {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
+      .hero-eyebrow::before {
+        content: "";
+        display: inline-block;
+        width: 32px;
+        height: 1px;
+        background: var(--accent);
+      }
+
+      .hero h1 {
+        font-size: clamp(2.8rem, 6vw, 5rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -0.03em;
+        margin-bottom: 1.5rem;
+      }
+      .hero h1 span {
+        color: var(--accent);
+      }
+
+      .hero-sub {
+        font-family: var(--mono);
+        font-size: 15px;
+        color: var(--text-dim);
+        margin-bottom: 1rem;
+        line-height: 1.8;
+      }
+      .hero-quote {
+        font-size: 16px;
+        color: var(--text-muted);
+        border-left: 2px solid var(--accent);
+        padding-left: 1rem;
+        margin: 1.5rem 0 2.5rem;
+        font-style: italic;
+      }
+
+      .hero-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin-bottom: 2.5rem;
+      }
+      .tag {
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 0.3rem 0.75rem;
+        border: 1px solid var(--border-hover);
+        border-radius: 3px;
+        color: var(--text-dim);
+        letter-spacing: 0.05em;
+      }
+
+      .open-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-family: var(--mono);
+        font-size: 11px;
+        padding: 0.4rem 0.9rem;
+        background: rgba(16, 185, 129, 0.1);
+        border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 3px;
+        color: var(--green);
+        margin-bottom: 2.5rem;
+        letter-spacing: 0.05em;
+      }
+      .open-badge::before {
+        content: "";
+        width: 6px;
+        height: 6px;
+        background: var(--green);
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      .hero-ctas {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        align-items: center;
+      }
+
+      .btn-primary {
+        font-family: var(--mono);
+        font-size: 13px;
+        padding: 0.7rem 1.5rem;
+        background: var(--accent);
+        color: #fff;
+        text-decoration: none;
+        border-radius: 4px;
+        letter-spacing: 0.03em;
+        transition: opacity 0.2s;
+      }
+      .btn-primary:hover {
+        opacity: 0.85;
+      }
+
+      .btn-secondary {
+        font-family: var(--mono);
+        font-size: 13px;
+        padding: 0.7rem 1.5rem;
+        border: 1px solid var(--border-hover);
+        color: var(--text-dim);
+        text-decoration: none;
+        border-radius: 4px;
+        letter-spacing: 0.03em;
+        transition:
+          border-color 0.2s,
+          color 0.2s;
+      }
+      .btn-secondary:hover {
+        border-color: var(--text-muted);
+        color: var(--text);
+      }
+
+      .social-links {
+        display: flex;
+        gap: 1.25rem;
+        margin-left: 0.5rem;
+      }
+      .social-links a {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-muted);
+        text-decoration: none;
+        transition: color 0.2s;
+        letter-spacing: 0.05em;
+      }
+      .social-links a:hover {
+        color: var(--accent);
+      }
+
+      /* SECTIONS */
+      section {
+        padding: 6rem 2rem;
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+
+      .section-header {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-bottom: 3.5rem;
+      }
+      .section-num {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+      }
+      .section-title {
+        font-size: 1.75rem;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+      }
+      .section-line {
+        flex: 1;
+        height: 1px;
+        background: var(--border);
+        max-width: 200px;
+      }
+
+      /* ABOUT */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+      }
+      .about-text p {
+        color: var(--text-dim);
+        margin-bottom: 1rem;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+      .about-text p strong {
+        color: var(--text);
+        font-weight: 600;
+      }
+      .about-stats {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+        align-content: start;
+      }
+      .stat-box {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1.25rem;
+      }
+      .stat-num {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--accent);
+        letter-spacing: -0.03em;
+        line-height: 1;
+      }
+      .stat-label {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-muted);
+        margin-top: 0.4rem;
+        letter-spacing: 0.05em;
+      }
+
+      /* PROJECTS */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .project-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.75rem;
+        transition:
+          border-color 0.2s,
+          transform 0.2s;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+        overflow: hidden;
+      }
+      .project-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 2px;
+        background: linear-gradient(90deg, var(--accent), var(--accent2));
+        opacity: 0;
+        transition: opacity 0.2s;
+      }
+      .project-card:hover {
+        border-color: var(--border-hover);
+        transform: translateY(-2px);
+      }
+      .project-card:hover::before {
+        opacity: 1;
+      }
+
+      .project-card.featured {
+        grid-column: span 2;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+      .project-card.featured::before {
+        opacity: 0.6;
+      }
+
+      .project-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+        margin-bottom: 1rem;
+      }
+      .project-badges {
+        display: flex;
+        gap: 0.5rem;
+        flex-wrap: wrap;
+      }
+
+      .badge {
+        font-family: var(--mono);
+        font-size: 10px;
+        padding: 0.2rem 0.5rem;
+        border-radius: 3px;
+        letter-spacing: 0.06em;
+        font-weight: 500;
+      }
+      .badge-live {
+        background: rgba(16, 185, 129, 0.15);
+        color: #10b981;
+        border: 1px solid rgba(16, 185, 129, 0.25);
+      }
+      .badge-internal {
+        background: rgba(245, 158, 11, 0.15);
+        color: #f59e0b;
+        border: 1px solid rgba(245, 158, 11, 0.25);
+      }
+      .badge-case {
+        background: rgba(99, 102, 241, 0.15);
+        color: #818cf8;
+        border: 1px solid rgba(99, 102, 241, 0.25);
+      }
+
+      .project-link {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-muted);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        gap: 0.3rem;
+        transition: color 0.2s;
+      }
+      .project-link:hover {
+        color: var(--accent);
+      }
+      .project-link::after {
+        content: "↗";
+      }
+
+      .project-name {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+        letter-spacing: -0.01em;
+      }
+      .project-tagline {
+        font-size: 13px;
+        color: var(--text-muted);
+        font-family: var(--mono);
+        margin-bottom: 1rem;
+      }
+      .project-desc {
+        font-size: 14px;
+        color: var(--text-dim);
+        line-height: 1.7;
+        margin-bottom: 1.25rem;
+        flex: 1;
+      }
+
+      .project-metrics {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        margin-bottom: 1.25rem;
+      }
+      .metric {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--accent);
+        background: var(--accent-dim);
+        padding: 0.25rem 0.6rem;
+        border-radius: 3px;
+        letter-spacing: 0.03em;
+      }
+
+      .project-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .stack-tag {
+        font-family: var(--mono);
+        font-size: 10px;
+        padding: 0.2rem 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        color: var(--text-muted);
+        letter-spacing: 0.04em;
+      }
+
+      /* BUILDING */
+      .building-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .building-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1.25rem 1.5rem;
+        display: flex;
+        gap: 1rem;
+        align-items: flex-start;
+      }
+      .building-icon {
+        font-size: 1.25rem;
+        line-height: 1;
+        flex-shrink: 0;
+        margin-top: 0.15rem;
+      }
+      .building-name {
+        font-weight: 600;
+        font-size: 14px;
+        margin-bottom: 0.4rem;
+      }
+      .building-features {
+        list-style: none;
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-muted);
+        display: flex;
+        flex-direction: column;
+        gap: 0.3rem;
+      }
+      .building-features li::before {
+        content: "→ ";
+        color: var(--accent);
+      }
+
+      /* EXPERIENCE */
+      .exp-list {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+      }
+      .exp-item {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 2rem;
+        padding: 2rem 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .exp-item:last-child {
+        border-bottom: none;
+      }
+      .exp-meta {
+        padding-top: 0.15rem;
+      }
+      .exp-period {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-muted);
+        letter-spacing: 0.05em;
+        margin-bottom: 0.4rem;
+      }
+      .exp-company {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--accent);
+        letter-spacing: 0.06em;
+      }
+      .exp-role {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+        letter-spacing: -0.01em;
+      }
+      .exp-points {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.6rem;
+      }
+      .exp-points li {
+        font-size: 14px;
+        color: var(--text-dim);
+        line-height: 1.6;
+        padding-left: 1.25rem;
+        position: relative;
+      }
+      .exp-points li::before {
+        content: "▸";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+        font-size: 10px;
+        top: 0.35rem;
+      }
+
+      /* SKILLS */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+      }
+      .skill-group {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 6px;
+        padding: 1.25rem;
+      }
+      .skill-group-name {
+        font-family: var(--mono);
+        font-size: 10px;
+        color: var(--accent);
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .skill-items {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+      }
+      .skill-item {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-dim);
+        padding: 0.2rem 0.5rem;
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        letter-spacing: 0.03em;
+      }
+
+      /* EDUCATION */
+      .edu-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+      }
+      .edu-card {
+        background: var(--bg-card);
+        border: 1px solid var(--border);
+        border-radius: 8px;
+        padding: 1.5rem;
+      }
+      .edu-year {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--accent);
+        letter-spacing: 0.1em;
+        margin-bottom: 0.5rem;
+      }
+      .edu-degree {
+        font-size: 15px;
+        font-weight: 700;
+        margin-bottom: 0.3rem;
+      }
+      .edu-school {
+        font-size: 13px;
+        color: var(--text-muted);
+        font-family: var(--mono);
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 3rem 2rem;
+        text-align: center;
+      }
+      .footer-inner {
+        max-width: 1100px;
+        margin: 0 auto;
+      }
+      .footer-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      .footer-tagline {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.06em;
+      }
+      .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        flex-wrap: wrap;
+        margin-bottom: 2rem;
+      }
+      .footer-links a {
+        font-family: var(--mono);
+        font-size: 12px;
+        color: var(--text-muted);
+        text-decoration: none;
+        letter-spacing: 0.06em;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--accent);
+      }
+      .footer-copy {
+        font-family: var(--mono);
+        font-size: 11px;
+        color: var(--text-muted);
+        opacity: 0.5;
+        letter-spacing: 0.05em;
+      }
+
+      /* GRID DIVIDER */
+      .full-width {
+        max-width: none;
+        border-top: 1px solid var(--border);
+      }
+
+      /* RESPONSIVE */
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .projects-grid,
+        .about-grid,
+        .building-grid,
+        .skills-grid,
+        .edu-grid {
+          grid-template-columns: 1fr;
+        }
+        .project-card.featured {
+          grid-column: span 1;
+          grid-template-columns: 1fr;
+        }
+        .exp-item {
+          grid-template-columns: 1fr;
+          gap: 0.5rem;
+        }
+        section {
+          padding: 4rem 1.25rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- NAV -->
+    <nav>
+      <a href="#" class="nav-logo">neetansh.dev</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#skills">Skills</a></li>
+      </ul>
+      <a href="mailto:neetanshpshah@gmail.com" class="nav-cta">Get in touch</a>
+    </nav>
+
+    <!-- HERO -->
+    <div style="max-width: 1100px; margin: 0 auto">
+      <section class="hero" id="top">
+        <div class="hero-inner">
+          <div class="hero-eyebrow">
+            Backend Engineer · Fintech & Fraud Systems
+          </div>
+          <h1>Neetansh<br /><span>Shah</span></h1>
+          <div class="hero-sub">
+            Spring Boot · FastAPI · Kafka · Python · Java · PostgreSQL · Docker
+          </div>
+          <blockquote class="hero-quote">
+            Fraud investigator by day who got frustrated enough to build the
+            tools that didn't exist.
+          </blockquote>
+          <div class="hero-tags">
+            <span class="tag">Fraud Detection</span>
+            <span class="tag">Chargeback Ops</span>
+            <span class="tag">Event-Driven Systems</span>
+            <span class="tag">ML Engineering</span>
+            <span class="tag">Fintech Risk</span>
+          </div>
+          <div class="open-badge">Open to Remote / UAE / EU</div>
+          <div class="hero-ctas">
+            <a href="#projects" class="btn-primary">View Projects</a>
+            <a
+              href="https://github.com/Neetansh1457"
+              target="_blank"
+              class="btn-secondary"
+              >GitHub</a
+            >
+            <a
+              href="https://linkedin.com/in/neetansh"
+              target="_blank"
+              class="btn-secondary"
+              >LinkedIn</a
+            >
+            <div class="social-links">
+              <a href="mailto:neetanshpshah@gmail.com"
+                >neetanshpshah@gmail.com</a
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- ABOUT -->
+    <div class="full-width"></div>
+    <section id="about">
+      <div class="section-header">
+        <span class="section-num">01</span>
+        <h2 class="section-title">About</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            Currently a
+            <strong>Transaction Risk Investigator at Amazon</strong>, I've spent
+            the last year building production backend systems in my own time —
+            because the tools I needed didn't exist.
+          </p>
+          <p>
+            <strong>TagAssist</strong> and <strong>DisputeFlow</strong> are live
+            in production. Both were built independently, outside working hours,
+            from real operational frustrations. Not toy projects — actual
+            systems handling real fraud workloads.
+          </p>
+          <p>
+            My background sits at an unusual intersection: deep
+            <strong>domain expertise in fraud and chargeback operations</strong
+            >, combined with hands-on backend engineering across the full stack
+            — Spring Boot, Kafka, FastAPI, PostgreSQL, Docker, and ML.
+          </p>
+          <p>
+            Looking for a
+            <strong>backend or ML engineering role in fintech</strong> where
+            that domain expertise translates directly into product impact. Open
+            to remote roles and international companies, particularly in
+            UAE/Dubai and Europe.
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-num">128+</div>
+            <div class="stat-label">Cases investigated daily</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Production systems shipped</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">43</div>
+            <div class="stat-label">Annotated ML training cases</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">8–15%</div>
+            <div class="stat-label">TagAssist auto-approval rate</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS -->
+    <div class="full-width"></div>
+    <section id="projects">
+      <div class="section-header">
+        <span class="section-num">02</span>
+        <h2 class="section-title">Projects</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="projects-grid">
+        <!-- DisputeFlow — featured -->
+        <div class="project-card featured">
+          <div>
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge badge-live">Live</span>
+              </div>
+              <a
+                href="https://dispute-flow.app"
+                target="_blank"
+                class="project-link"
+                >dispute-flow.app</a
+              >
+            </div>
+            <div class="project-name">DisputeFlow</div>
+            <div class="project-tagline">
+              Dispute Document Processing System
+            </div>
+            <p class="project-desc">
+              Full-stack event-driven system that automates dispute document
+              processing across multiple bank portals — solving a real
+              operational problem faced by fraud investigators daily.
+              Architected with multi-bank per-thread-pool processing,
+              bank-specific filename parsing, reason code mapping (AMEX S01,
+              PMTC 98), and a rules-based decision engine for
+              auto-classification.
+            </p>
+            <p class="project-desc">
+              Integrated Kafka for async event streaming with graceful fallback
+              polling for production cost constraints. Deployed on DigitalOcean
+              with Docker, Nginx, and Let's Encrypt SSL. Built a React frontend
+              with real-time upload status. Roadmap includes RBAC,
+              per-investigator credential vault, and a manager analytics
+              dashboard.
+            </p>
+          </div>
+          <div
+            style="
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            "
+          >
+            <div>
+              <div class="project-metrics">
+                <span class="metric">Multi-bank processing</span>
+                <span class="metric">Kafka event streaming</span>
+                <span class="metric">Rules-based auto-classification</span>
+                <span class="metric">Microservices architecture</span>
+              </div>
+            </div>
+            <div class="project-stack">
+              <span class="stack-tag">Spring Boot</span>
+              <span class="stack-tag">Java 17</span>
+              <span class="stack-tag">Apache Kafka</span>
+              <span class="stack-tag">FastAPI</span>
+              <span class="stack-tag">PostgreSQL</span>
+              <span class="stack-tag">React</span>
+              <span class="stack-tag">Docker</span>
+              <span class="stack-tag">Nginx</span>
+              <span class="stack-tag">DigitalOcean</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- TagAssist -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-badges">
+              <span class="badge badge-live">Live</span>
+            </div>
+            <a href="https://tagassist.dev" target="_blank" class="project-link"
+              >tagassist.dev</a
+            >
+          </div>
+          <div class="project-name">TagAssist</div>
+          <div class="project-tagline">ML Fraud Validation Engine</div>
+          <p class="project-desc">
+            Hybrid ML engine combining XGBoost (structured fraud signals) and
+            MiniLM sentence embeddings to auto-approve high-confidence fraud tag
+            change requests — reducing analyst review load during fraud spikes.
+            Trained on 43 real annotated cases, 3-class output (TRUEF / VCAC /
+            NOT), with conservative threshold tuning.
+          </p>
+          <div class="project-metrics">
+            <span class="metric">8–15% auto-approval rate</span>
+            <span class="metric">43 annotated cases</span>
+            <span class="metric">3-class prediction</span>
+          </div>
+          <div class="project-stack">
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">XGBoost</span>
+            <span class="stack-tag">MiniLM</span>
+            <span class="stack-tag">Flask</span>
+            <span class="stack-tag">Docker</span>
+            <span class="stack-tag">Gunicorn</span>
+            <span class="stack-tag">Nginx</span>
+          </div>
+        </div>
+
+        <!-- Similar Invoice Generator -->
+        <div class="project-card">
+          <div class="project-header">
+            <div class="project-badges">
+              <span class="badge badge-internal">Live (Internal)</span>
+            </div>
+          </div>
+          <div class="project-name">Similar Invoice Generator</div>
+          <div class="project-tagline">Internal Operations Tool</div>
+          <p class="project-desc">
+            Replaced manual Word-template invoice creation (15–20/day per
+            investigator, 3–5 min each, high error rate). Generates Amazon-style
+            PDFs from structured inputs in under 1 minute, eliminating
+            formatting errors and cognitive load entirely.
+          </p>
+          <div class="project-metrics">
+            <span class="metric">~1,000 hrs/week saved</span>
+            <span class="metric">$400K+/month recoverable</span>
+            <span class="metric">&lt;1 min per invoice</span>
+          </div>
+          <div class="project-stack">
+            <span class="stack-tag">Spring Boot</span>
+            <span class="stack-tag">Java</span>
+            <span class="stack-tag">React</span>
+            <span class="stack-tag">PDF Generation</span>
+            <span class="stack-tag">REST API</span>
+          </div>
+        </div>
+
+        <!-- Hold Queue -->
+        <div class="project-card" style="grid-column: span 2">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem">
+            <div>
+              <div class="project-header">
+                <div class="project-badges">
+                  <span class="badge badge-case">Case Study</span>
+                </div>
+                <a
+                  href="https://github.com/Neetansh1457/Hold-Queue"
+                  target="_blank"
+                  class="project-link"
+                  >GitHub</a
+                >
+              </div>
+              <div class="project-name">Hold Queue</div>
+              <div class="project-tagline">Workflow Design Case Study</div>
+              <p class="project-desc">
+                Identified and documented a systemic SLA failure at Amazon:
+                Snooze mechanism misuse causing silent case aging, ownership
+                loss, and avoidable chargeback representation failures. Designed
+                a Shift-Bound Hold Queue system with strict guardrails —
+                shift-bound ownership expiry, 10-case cap, auto-snooze at shift
+                end.
+              </p>
+            </div>
+            <div
+              style="
+                display: flex;
+                flex-direction: column;
+                justify-content: flex-end;
+              "
+            >
+              <p class="project-desc">
+                Documented as a full product spec with failure mode analysis.
+                Demonstrates the ability to identify systemic operational
+                problems, reason about edge cases, and produce structured
+                engineering proposals — not just code.
+              </p>
+              <div class="project-stack" style="margin-top: auto">
+                <span class="stack-tag">Systems Design</span>
+                <span class="stack-tag">Operational Engineering</span>
+                <span class="stack-tag">Product Thinking</span>
+                <span class="stack-tag">Failure Mode Analysis</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CURRENTLY BUILDING -->
+    <div class="full-width"></div>
+    <section id="building">
+      <div class="section-header">
+        <span class="section-num">03</span>
+        <h2 class="section-title">Currently Building</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="building-grid">
+        <div class="building-card">
+          <div class="building-icon">⚙️</div>
+          <div>
+            <div class="building-name">TagAssist v3</div>
+            <ul class="building-features">
+              <li>Duplicate detection engine</li>
+              <li>Priority queue routing</li>
+              <li>Account health scoring</li>
+              <li>Partial automation pipeline</li>
+              <li>Geolocation fraud signals</li>
+            </ul>
+          </div>
+        </div>
+        <div class="building-card">
+          <div class="building-icon">🤖</div>
+          <div>
+            <div class="building-name">DisputeFlow — Playwright Automation</div>
+            <ul class="building-features">
+              <li>Playwright-based Amex portal automation</li>
+              <li>Per-investigator encrypted credential vault</li>
+              <li>Browser automation layer</li>
+              <li>Spring Security / RBAC</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <div class="full-width"></div>
+    <section id="experience">
+      <div class="section-header">
+        <span class="section-num">04</span>
+        <h2 class="section-title">Experience</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="exp-list">
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-period">Jan 2025 — Present</div>
+            <div class="exp-company">Amazon</div>
+          </div>
+          <div>
+            <div class="exp-role">Transaction Risk Investigator</div>
+            <ul class="exp-points">
+              <li>
+                Investigate 128+ fraud and chargeback cases daily across
+                multiple bank dispute portals, maintaining high accuracy under
+                sustained volume pressure.
+              </li>
+              <li>
+                Analyze behavioral fraud signals, transaction patterns, and
+                account history to detect sophisticated fraud typologies; use
+                SQL for ad-hoc investigation queries and pattern analysis.
+              </li>
+              <li>
+                Independently built TagAssist (live ML fraud validation engine),
+                DisputeFlow (full-stack dispute processing system), Similar
+                Invoice Generator, and the Hold Queue workflow proposal — all
+                self-initiated outside working hours.
+              </li>
+              <li>
+                Designed the Hold Queue system proposal to eliminate avoidable
+                SLA breaches caused by Snooze misuse — documented as a full
+                product spec and shared with team leadership.
+              </li>
+              <li>
+                Consistently exceed performance benchmarks in productivity,
+                accuracy, and compliance.
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="exp-item">
+          <div class="exp-meta">
+            <div class="exp-period">Jan 2023 — Jan 2025</div>
+            <div class="exp-company">Amita Trading Co.</div>
+          </div>
+          <div>
+            <div class="exp-role">Operations Manager</div>
+            <ul class="exp-points">
+              <li>
+                Directed end-to-end business operations; analyzed sales and
+                financial data to identify pricing trends and improve
+                profitability. Managed vendor relationships, procurement, and
+                supply chain efficiency.
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <div class="full-width"></div>
+    <section id="skills">
+      <div class="section-header">
+        <span class="section-num">05</span>
+        <h2 class="section-title">Skills</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-group-name">Languages</div>
+          <div class="skill-items">
+            <span class="skill-item">Java</span>
+            <span class="skill-item">Python</span>
+            <span class="skill-item">SQL</span>
+            <span class="skill-item">C++</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Backend</div>
+          <div class="skill-items">
+            <span class="skill-item">Spring Boot</span>
+            <span class="skill-item">FastAPI</span>
+            <span class="skill-item">Flask</span>
+            <span class="skill-item">REST APIs</span>
+            <span class="skill-item">Spring Security</span>
+            <span class="skill-item">Spring Data JPA</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">ML / AI</div>
+          <div class="skill-items">
+            <span class="skill-item">XGBoost</span>
+            <span class="skill-item">PyTorch</span>
+            <span class="skill-item">Scikit-learn</span>
+            <span class="skill-item">MiniLM Embeddings</span>
+            <span class="skill-item">TensorFlow</span>
+            <span class="skill-item">RAG</span>
+            <span class="skill-item">Spring AI</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Data</div>
+          <div class="skill-items">
+            <span class="skill-item">PostgreSQL</span>
+            <span class="skill-item">Pandas</span>
+            <span class="skill-item">Tableau</span>
+            <span class="skill-item">SQLite</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">DevOps</div>
+          <div class="skill-items">
+            <span class="skill-item">Docker</span>
+            <span class="skill-item">Kafka</span>
+            <span class="skill-item">Nginx</span>
+            <span class="skill-item">DigitalOcean</span>
+            <span class="skill-item">CI/CD</span>
+            <span class="skill-item">Git / GitHub</span>
+          </div>
+        </div>
+        <div class="skill-group">
+          <div class="skill-group-name">Domain</div>
+          <div class="skill-items">
+            <span class="skill-item">Fraud Detection</span>
+            <span class="skill-item">Chargeback Ops</span>
+            <span class="skill-item">Dispute Processing</span>
+            <span class="skill-item">Fintech Risk</span>
+            <span class="skill-item">Fintech Risk</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <div class="full-width"></div>
+    <section id="education">
+      <div class="section-header">
+        <span class="section-num">06</span>
+        <h2 class="section-title">Education & Certifications</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="edu-grid">
+        <div class="edu-card">
+          <div class="edu-year">2024</div>
+          <div class="edu-degree">M.S. in Computer Science (AI & ML)</div>
+          <div class="edu-school">Woolf University</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-year">2026 · In Progress</div>
+          <div class="edu-degree">MBA in Fintech</div>
+          <div class="edu-school">Dr. D.Y. Patil Vidyapeeth</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-year">Certification</div>
+          <div class="edu-degree">TensorFlow Developer Professional</div>
+          <div class="edu-school">DeepLearning.AI</div>
+        </div>
+        <div class="edu-card">
+          <div class="edu-year">Certification</div>
+          <div class="edu-degree">Google Data Analytics Professional</div>
+          <div class="edu-school">Google · Coursera</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-inner">
+        <div class="footer-name">Neetansh Shah</div>
+        <div class="footer-tagline">
+          Backend Engineer · Fintech & Fraud Systems · Open to Remote / UAE / EU
+        </div>
+        <div class="footer-links">
+          <a href="mailto:neetanshpshah@gmail.com">neetanshpshah@gmail.com</a>
+          <a href="https://github.com/Neetansh1457" target="_blank">GitHub</a>
+          <a href="https://linkedin.com/in/neetansh" target="_blank"
+            >LinkedIn</a
+          >
+          <a href="https://tagassist.dev" target="_blank">tagassist.dev</a>
+          <a href="https://dispute-flow.app" target="_blank"
+            >dispute-flow.app</a
+          >
+        </div>
+        <div class="footer-copy"></div>
+      </div>
+    </footer>
+  </body>
+</html>
